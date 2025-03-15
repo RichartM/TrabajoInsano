@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as Yup from 'yup';  
 import { Form, Button, Alert } from 'react-bootstrap';
+import "../styles/Login.css"; // 🔹 Importamos el CSS
 
 
 const LoginForm = () => {
@@ -42,36 +43,40 @@ const LoginForm = () => {
   };
 
   return (
-    <div>
-      <h2>Iniciar sesión</h2>
-      {isLocked && <Alert variant="danger">{error}</Alert>}
-      {!isLocked && error && <Alert variant="danger">{error}</Alert>}
-      
-      <Form onSubmit={handleSubmit}>
-        <Form.Group controlId="formEmail">
-          <Form.Label>Correo electrónico</Form.Label>
-          <Form.Control
-            type="email"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            placeholder="Introduce tu correo"
-          />
-        </Form.Group>
+    <div className="login-container">
+      <div className="login-box">
+        <h2 className="login-title">Iniciar sesión</h2>
+        {isLocked && <Alert variant="danger">{error}</Alert>}
+        {!isLocked && error && <Alert variant="danger">{error}</Alert>}
+        
+        <Form onSubmit={handleSubmit} className="login-form">
+          <Form.Group controlId="formEmail">
+            <Form.Label>Correo electrónico</Form.Label>
+            <Form.Control
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Introduce tu correo"
+              className="login-input"
+            />
+          </Form.Group>
 
-        <Form.Group controlId="formPassword">
-          <Form.Label>Contraseña</Form.Label>
-          <Form.Control
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Introduce tu contraseña"
-          />
-        </Form.Group>
+          <Form.Group controlId="formPassword">
+            <Form.Label>Contraseña</Form.Label>
+            <Form.Control
+              type="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Introduce tu contraseña"
+              className="login-input"
+            />
+          </Form.Group>
 
-        <Button variant="primary" type="submit" disabled={isLocked}>
-          Iniciar sesión
-        </Button>
-      </Form>
+          <Button variant="primary" type="submit" disabled={isLocked} className="login-button">
+            Iniciar sesión
+          </Button>
+        </Form>
+      </div>
     </div>
   );
 };
