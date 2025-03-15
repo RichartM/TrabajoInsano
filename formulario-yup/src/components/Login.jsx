@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';  // Usamos useNavigate para redirigir
 import * as Yup from 'yup';  
 import { Form, Button, Alert } from 'react-bootstrap';
-import "../styles/Login.css"; // 🔹 Importamos el CSS
+import "../styles/Login.css"; 
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');

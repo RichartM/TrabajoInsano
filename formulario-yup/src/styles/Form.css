@@ -1,4 +1,3 @@
-/* Contenedor principal */
 .form-container {
     width: 100%;
     max-width: 600px;
@@ -10,7 +9,6 @@
     text-align: center;
   }
   
-  /* Estilos del formulario */
   .form {
     display: flex;
     flex-direction: column;
@@ -23,7 +21,6 @@
     margin: auto;
   }
   
-  /* Título */
   .title {
     font-size: 28px;
     color: royalblue;
@@ -57,7 +54,6 @@
     animation: pulse 1s linear infinite;
   }
   
-  /* Contenedor de campos dividido en dos columnas */
   .form-content {
     display: flex;
     justify-content: space-between;
@@ -68,7 +64,6 @@
     width: 50%;
   }
   
-  /* Estilos de los inputs */
   .form label {
     position: relative;
     display: block;
@@ -100,7 +95,6 @@
     color: green;
   }
   
-  /* Botón de enviar */
   .submit {
     border: none;
     outline: none;
@@ -117,7 +111,6 @@
     background-color: rgb(56, 90, 194);
   }
   
-  /* Animación */
   @keyframes pulse {
     from {
       transform: scale(0.9);
