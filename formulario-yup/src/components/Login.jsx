@@ -1,15 +1,14 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';  // Usamos useNavigate para redirigir
 import * as Yup from 'yup';  
 import { Form, Button, Alert } from 'react-bootstrap';
-
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const navigate = useNavigate(); 
+  const navigate = useNavigate(); // Usamos useNavigate para redirigir
   const [isLocked, setIsLocked] = useState(false);
 
   const validationSchema = Yup.object().shape({
@@ -25,7 +24,7 @@ const LoginForm = () => {
       .then(() => {
         if (email === 'user@gmail.com' && password === '123456') {
           setError('');
-          navigate('/profile');
+          navigate('/profile'); // Redirige al perfil cuando las credenciales son correctas
         } else {
           setAttempts(attempts + 1);
           if (attempts + 1 >= 3) {

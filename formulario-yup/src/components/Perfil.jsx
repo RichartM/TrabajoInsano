@@ -1,15 +1,14 @@
-import React from 'react'
+import React from 'react';
 
 export default function Perfil() {
   return (
     <div>
-        <p>nombre </p>
-        <p>apellidos</p>
-        <p>Correo</p>
-        <p>Edad</p>
-        <p>Telefono</p>
-        <p>Contraseña</p>
-
+      <p>Nombre:</p>
+      <p>Apellidos:</p>
+      <p>Correo:</p>
+      <p>Edad:</p>
+      <p>Teléfono:</p>
+      <p>Contraseña:</p>
     </div>
-  )
+  );
 }
