@@ -2,7 +2,7 @@ import React from 'react'
 import {useForm} from 'react-hook-form'
 import * as yup from 'yup'
 import { yupResolver } from '@hookform/resolvers/yup'
-
+import "../styles/Form.css"; 
 
 export default function Form() {
 
@@ -27,31 +27,63 @@ export default function Form() {
     }
     //apellidos + numero de telefono 
   return (
-    <div>
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <input type='text' placeholder='Nombre' {...register("name")}/>
+    <div className="form-container">
+         <form onSubmit={handleSubmit(onSubmit)} className="form">
+        <div className="form-content">
+        <div className="form-left">
+
+            <label>
+            <input type='text'  {...register("name")} className="input"/>
+            <span>Nombre</span>
+            </label>
             <p>{errors.name?.message}</p>
+           <label>
+            <input type='text' placeholder='' {...register("lastName")} className="input"/>
+            <span>Apellido paterno</span>
 
-            <input type='text' placeholder='Apellido Paterno' {...register("lastName")}/>
+            </label>
             <p>{errors.lastName?.message}</p>
-
-            <input type='text' placeholder='Apellido Materno' {...register("surName")}/>
+            <label>
+            <input type='text' placeholder='' {...register("surName")}className="input"/>
+            <span>Apellido Materno</span>
+            </label>
             <p>{errors.surName?.message}</p>
 
-            <input type='text' placeholder='Email' {...register("email")}/>
+            <label>
+            <input type='text' placeholder='' {...register("email")} className="input"/>
+            <span>Correo</span>
+            </label>
             <p>{errors.email?.message}</p>
+            </div>
+            <p></p>
+            <div className="form-right">
+            <label>
+            <input type='number' placeholder='' {...register("age")} className="input" />
+            <span>Edad</span>
 
-            <input type='number' placeholder='Edad' {...register("age")}/>
+            </label>
             <p>{errors.age?.message}</p>
+            <label>
+            <input type='number' placeholder='' {...register("phone")} className="input"/>
+            <span>Telefono</span>
 
-            <input type='number' placeholder='Teléfono' {...register("phone")}/>
+            </label>
             <p>{errors.phone?.message}</p>
+            <label>
+            <input type='password' placeholder='' {...register("pass")} className="input" />
+            <span>Contraseña</span>
 
-            <input type='password' placeholder='Ingresa la contraseña' {...register("pass")} />
+            </label>
             <p>{errors.pass?.message}</p>
+            <label>
+            <input type='password' placeholder='' {...register("confirmPass")} className="input"/>
+            <span>Confirma contraseña</span>
 
-            <input type='password' placeholder='Confirmar contraseña' {...register("confirmPass")}/>
+            </label>
             <p>{errors.confirmPass?.message}</p>
+            </div>
+            </div>
+
 
             <input type='submit'/>
         </form>
