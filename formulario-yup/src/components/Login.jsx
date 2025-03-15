@@ -1,44 +1,44 @@
-import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';  // Usamos useNavigate para redirigir
-import * as Yup from 'yup';  
+import React, { useState, useContext } from 'react'; 
+import { useNavigate } from 'react-router-dom';
+import * as Yup from 'yup';
 import { Form, Button, Alert } from 'react-bootstrap';
-import "../styles/Login.css"; 
+import { UserContext } from './UserContext'; 
+import "../styles/Login.css";
 
 const LoginForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [attempts, setAttempts] = useState(0);
-  const navigate = useNavigate(); // Usamos useNavigate para redirigir
+  const { loginUser } = useContext(UserContext);
+  const navigate = useNavigate();
   const [isLocked, setIsLocked] = useState(false);
 
   const validationSchema = Yup.object().shape({
     email: Yup.string().email('Correo inválido').required('El correo es obligatorio'),
-    password: Yup.string().min(6, 'La contraseña debe tener al menos 6 caracteres').required('La contraseña es obligatoria')
+    password: Yup.string().min(4, 'La contraseña debe tener al menos 4 caracteres').required('La contraseña es obligatoria')
   });
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    
-    validationSchema
-      .validate({ email, password })
-      .then(() => {
-        if (email === 'user@gmail.com' && password === '123456') {
-          setError('');
-          navigate('/profile'); // Redirige al perfil cuando las credenciales son correctas
+
+    validationSchema.validate({ email, password }).then(() => {
+      if (loginUser(email, password)) {
+        setError('');
+        alert("Inicio de sesión exitoso.");
+        navigate('/profile');
+      } else {
+        setAttempts(attempts + 1);
+        if (attempts + 1 >= 3) {
+          setIsLocked(true);
+          setError('Demasiados intentos fallidos. Intenta más tarde.');
         } else {
-          setAttempts(attempts + 1);
-          if (attempts + 1 >= 3) {
-            setIsLocked(true);
-            setError('Demasiados intentos fallidos. Intenta más tarde.');
-          } else {
-            setError('Credenciales incorrectas.');
-          }
+          setError('Credenciales incorrectas.');
         }
-      })
-      .catch(err => {
-        setError(err.message);
-      });
+      }
+    }).catch(err => {
+      setError(err.message);
+    });
   };
 
   return (
@@ -47,8 +47,8 @@ const LoginForm = () => {
         <h2 className="login-title">Iniciar sesión</h2>
         {isLocked && <Alert variant="danger">{error}</Alert>}
         {!isLocked && error && <Alert variant="danger">{error}</Alert>}
-        
         <Form onSubmit={handleSubmit} className="login-form">
+
           <Form.Group controlId="formEmail">
             <Form.Label>Correo electrónico</Form.Label>
             <Form.Control
